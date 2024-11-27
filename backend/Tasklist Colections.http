@@ -1,0 +1,116 @@
+### Create An Account
+POST {{host}}/api/register
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "infinitypaul76@live.com",
+    "password": "Password_#1",
+    "password_confirmation": "Password_#1",
+    "username": "infinitypaul76"
+
+}
+> {% client.global.set("token", response.body.data.token) %}
+
+### Login
+POST {{host}}/api/login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "email": "infinitypaul@live.com",
+    "password": "Password_#1"
+}
+> {% client.global.set("token", response.body.data.token) %}
+
+### Create Task
+POST {{host}}/api/tasks
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "New Task 11",
+    "description": "This is a new task"
+}
+
+### Update Task
+PUT {{host}}/api/tasks/8
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Updated Task 11",
+    "description": "This is an updated task"
+}
+
+### Delete Task
+DELETE {{host}}/api/tasks/8
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Get All Tasks
+GET {{host}}/api/tasks
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Get Single Task
+GET {{host}}/api/tasks/4
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Mark Task As Completed Or Incomplete
+POST {{host}}/api/tasks/mark/9
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Share Task
+POST {{host}}/api/tasks/share/9
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "username": "infinitypaul3",
+    "permission": 1
+}
+
+### List Permissions
+GET {{host}}/api/permissions
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Task Shared With Me
+GET {{host}}/api/tasks/shared
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Task I Shared
+GET {{host}}/api/tasks/4/shared
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### My Profile
+GET {{host}}/api/me
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### Logout
+POST {{host}}/api/logout
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+
+
